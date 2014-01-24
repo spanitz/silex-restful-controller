@@ -11,10 +11,10 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "silex/silex": "~1.1",
+        "silex/silex": "~1.1"
     },
     "autoload": {
-        "psr-0": { "spanitz": "src" }
+        "psr-0": { "spanitz\\Silex": "src" }
     },
     "extra": {
         "branch-alias": {
