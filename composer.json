@@ -1,0 +1,24 @@
+{
+    "name": "spanitz/silex-restful-controller",
+    "description": "Simple Silex Controller for implementing restful Apis",
+    "keywords": ["silex"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stefan Panitz",
+            "email": "info@stefanpanitz.de"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "silex/silex": "~1.1",
+    },
+    "autoload": {
+        "psr-0": { "spanitz": "src" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
