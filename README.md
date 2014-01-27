@@ -4,7 +4,7 @@ Restful Controller for Silex
 Usage
 -----
 
-If you need a restful Api, just register the RestfulControllerProvider for a specific route:
+If you need a restful Api, just register the `RestfulControllerProvider` for a specific route:
 
 ```php
 <?php
@@ -50,11 +50,19 @@ class Todo extends RestfulController
 }
 ```
 
+The example implementation above exposes the following routes:
+
+* `GET /api/todo`
+* `GET /api/todo/<id>`
+* `PUT /api/todo`
+* `POST /api/todo/<id>`
+* `DELETE /api/todo/<id>`
+
 As you see, the implemented methods corresponds to HTTP methods. By extending RestfulController you're able to access the Silex Application instance in your methods by simply call `$this->app`; and the corresponding Request by `$this->request`.
 
 Your method can either return an array, which is returned as `JsonResponse`; or any kind of `Symfony\Component\HttpFoundation\Response` instance.
 
-You can also use a different namespace than Api\Controller for your own Controller classes, by overwriting the configuration in the constructor:
+If the default namespace `Api\Controller` doesn't fit your needs for your own Controller classes. Just overwrite the configuration in the constructor:
 
  ```php
  $app->mount('/api', new RestfulControllerProvider(array(
