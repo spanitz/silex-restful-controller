@@ -69,3 +69,13 @@ If the default namespace `Api\Controller` doesn't fit your needs for your own Co
     'namespace' => 'My\Controller\Namespace'
  )));
  ```
+
+Installation
+------------
+
+Add the following line to your composer.json:
+    {
+        "require": {
+            "spanitz/silex-restful-controller": "1.0.*@dev"
+        }
+    }
