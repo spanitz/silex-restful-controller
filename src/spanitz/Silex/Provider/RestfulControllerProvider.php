@@ -8,15 +8,21 @@ use Symfony\Component\HttpFoundation\Request;
 class RestfulControllerProvider implements ControllerProviderInterface
 {
     protected $config = array(
-        'namespace' => 'Api\Controller'
+        'namespace' => 'Api\Controller',
+        'status-codes' => array(
+            'get' => 200,
+            'post' => 201,
+            'put' => 204,
+            'delete' => 200
+        )
     );
 
-    public function __construct(array $config = array())
+    public function __construct (array $config = array())
     {
-        $this->config = array_merge($this->config, $config);
+        $this->config = array_merge_recursive($this->config, $config);
     }
 
-    public function connect(Application $app)
+    public function connect (Application $app)
     {
         $app['restful.config'] = $this->config;
 

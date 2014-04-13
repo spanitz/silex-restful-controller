@@ -1,10 +1,12 @@
 Restful Controller for Silex
 ============================
 
-Usage
------
+The RestfulControllerProvider helps you to organize your code and provides better testability of your route controllers.
 
-If you need a restful Api, just register the `RestfulControllerProvider` for a specific route:
+Gettings started
+----------------
+
+Just register the `RestfulControllerProvider` for a specific route:
 
 ```php
 <?php
@@ -15,7 +17,10 @@ $app = new Silex\Application();
 $app->mount('/api', new RestfulControllerProvider());
 ```
 
-Then you're able to implement your Controllers:
+Usage
+-----
+
+Implement your Controllers:
 
 ```php
 <?php
@@ -33,14 +38,14 @@ class Todo extends RestfulController
         return $data;
     }
 
-    public function put ()
-    {
-        // create todo...
-    }
-
-    public function post ($id = null)
+    public function put ($id = null)
     {
         // update todo...
+    }
+
+    public function post ()
+    {
+        // create todo...
     }
 
     public function delete ($id = null)
@@ -52,15 +57,17 @@ class Todo extends RestfulController
 
 The example implementation above exposes the following routes:
 
-* `GET /api/todo`
 * `GET /api/todo/<id>`
-* `PUT /api/todo`
-* `POST /api/todo/<id>`
+* `PUT /api/todo/<id>`
+* `POST /api/todo/`
 * `DELETE /api/todo/<id>`
 
-As you see, the implemented methods corresponds to HTTP methods. By extending RestfulController you're able to access the Silex Application instance in your methods by simply call `$this->app`; and the corresponding Request by `$this->request`.
+As you see, the implemented methods corresponds to HTTP methods. If your controller extends from RestfulController, you're able to access the Silex Application instance in your methods with `$this->app`; and the corresponding Request with `$this->request`.
 
 Your method can either return an array, which is returned as `JsonResponse`; or any kind of `Symfony\Component\HttpFoundation\Response` instance.
+
+Configuration
+-------------
 
 If the default namespace `Api\Controller` doesn't fit your needs for your own Controller classes. Just overwrite the configuration in the constructor:
 
@@ -70,15 +77,30 @@ If the default namespace `Api\Controller` doesn't fit your needs for your own Co
  )));
  ```
 
+Your derived class of RestfulController also takes care of the appropriate response codes. If you want to overwrite this behaviour, the following configuration can be set:
+
+ ```php
+ $app->mount('/api', new RestfulControllerProvider(array(
+    'status-codes' => array(
+        'post' => 200
+        'put' => 200
+    )
+ )));
+ ```
+
 Installation
 ------------
 
-Simply install via composer. Add the following line to your composer.json:
+Simply install via composer. Add the following lines to your composer.json:
 
 ```json
 {
     "require": {
         "spanitz/silex-restful-controller": "1.0.*@dev"
+    },
+
+    "autoload": {
+        "psr-4": {"Api": "src/"}
     }
 }
 ```
