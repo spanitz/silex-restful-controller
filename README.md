@@ -1,10 +1,10 @@
 Restful Controller for Silex
 ============================
 
-The RestfulControllerProvider helps you to organize your code and provides better testability of your route controllers.
+The RestfulControllerProvider provides an alternative way of implementing class-based route controllers.
 
-Gettings started
-----------------
+Getting started
+---------------
 
 Just register the `RestfulControllerProvider` for a specific route:
 
@@ -20,7 +20,7 @@ $app->mount('/api', new RestfulControllerProvider());
 Usage
 -----
 
-Implement your Controllers:
+Let's take the well-known Todo example:
 
 ```php
 <?php
@@ -55,7 +55,7 @@ class Todo extends RestfulController
 }
 ```
 
-The example implementation above exposes the following routes:
+The implementation above exposes the following routes:
 
 * `GET /api/todo/<id>`
 * `PUT /api/todo/<id>`
@@ -69,7 +69,7 @@ Your method can either return an array, which is returned as `JsonResponse`; or 
 Configuration
 -------------
 
-If the default namespace `Api\Controller` doesn't fit your needs for your own Controller classes. Just overwrite the configuration in the constructor:
+If the default namespace `Api\Controller` doesn't fit your needs, just overwrite the configuration in the constructor:
 
  ```php
  $app->mount('/api', new RestfulControllerProvider(array(
@@ -77,7 +77,7 @@ If the default namespace `Api\Controller` doesn't fit your needs for your own Co
  )));
  ```
 
-Your derived class of RestfulController also takes care of the appropriate response codes. If you want to overwrite this behaviour, the following configuration can be set:
+Your derived class of RestfulController also takes care of the correct response codes. If you want to overwrite this behaviour, the following configuration can be set:
 
  ```php
  $app->mount('/api', new RestfulControllerProvider(array(
